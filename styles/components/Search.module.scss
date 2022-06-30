@@ -22,7 +22,9 @@
     cursor: pointer;
     // margin: 0 1rem;
 }
-
+.filter-container{
+    width:202px;
+}
 .filter{
     display: flex;
     background-color: white;
@@ -31,9 +33,21 @@
     justify-content: space-between;
     width:202px;
     padding:  0 1.5rem;
+    margin-bottom: -8px;
 }
-
+.filterOptions{
+    padding:  0.4rem 1.5rem;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
 i#filter-toggle{
     font-size: 0.75rem;
     cursor: pointer;
+}
+.filterOption{
+    cursor: pointer;
+    &:hover{
+        color:rgb(199, 198, 198);
+    }
 }

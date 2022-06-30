@@ -15,23 +15,26 @@ const Search = (props) => {
           onChange={props.onChange}
         />
       </div>
-      <div className={styles.filter}>
-        <p
-          style={{
-            fontWeight: 400,
-            letterSpacing: "0.05px",
-            paddingRight: "22px",
-          }}
-        >
-          Filter by Region
-        </p>
-        <i id={styles["filter-toggle"]} className="fa fa-angle-down"></i>
-      </div>
-      <div className={styles.filterOptions}>
-        <p>Africa</p>
-        <p>Africa</p>
-        <p>Africa</p>
-        <p>Africa</p>
+      <div className={styles["filter-container"]}>
+        <div className={styles.filter}>
+          <p
+            style={{
+              fontWeight: 400,
+              letterSpacing: "0.05px",
+              paddingRight: "22px",
+            }}
+          >
+            Filter by Region
+          </p>
+          <i id={styles["filter-toggle"]} className="fa fa-angle-down"></i>
+        </div>
+        <div className={styles.filterOptions}>
+          <p className={styles.filterOption}>Africa</p>
+          <p className={styles.filterOption}>America</p>
+          <p className={styles.filterOption}>Asia</p>
+          <p className={styles.filterOption}>Europe</p>
+          <p className={styles.filterOption}>Oceania</p>
+        </div>
       </div>
     </>
   );
