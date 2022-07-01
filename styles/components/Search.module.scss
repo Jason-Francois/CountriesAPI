@@ -20,10 +20,10 @@
     position: absolute;
     left: 2rem;
     cursor: pointer;
-    // margin: 0 1rem;
 }
 .filter-container{
     width:202px;
+    position: absolute;
 }
 .filter{
     display: flex;
@@ -40,8 +40,13 @@
     background-color: white;
     border-radius: 5px;
     margin-top: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
-i#filter-toggle{
+.fade{
+    opacity: 1;
+}
+i.filter-toggle{
     font-size: 0.75rem;
     cursor: pointer;
 }
@@ -50,4 +55,8 @@ i#filter-toggle{
     &:hover{
         color:rgb(199, 198, 198);
     }
+}
+
+.selected{
+    color:rgb(199, 198, 198);
 }
