@@ -12,6 +12,7 @@ const Dashboard = (props) => {
     const data = await res.json();
     setCountries(data);
     setInitialCountries(data);
+
   };
 
   useEffect(() => {

@@ -41,7 +41,7 @@ const Search = (props) => {
               Africa
             </p>
             <p className={styles.filterOption} onClick={props.onClick}>
-              America
+              Americas
             </p>
             <p className={styles.filterOption} onClick={props.onClick}>
               Asia
