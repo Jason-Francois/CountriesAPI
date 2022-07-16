@@ -1,9 +1,20 @@
-.container{
-    padding-top: 4rem;
-    margin: 0 1.1rem;
+@use "../utils/" as utils;
+ .container{
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    @include utils.sm{
+        display: grid;
+        gap: 4.375rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include utils.md{
+        grid-template-columns: repeat(3, 1fr);
+        
+    }
+    @include utils.lg{
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .selected{

@@ -1,5 +1,3 @@
-//Breakpoints
-@forward "./breakpoints";
-
-//Fonts
 @forward "./fonts";
+@forward "./_colors.scss";
+@forward "./_breakpoints.scss";

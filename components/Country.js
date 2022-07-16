@@ -4,28 +4,27 @@ const Country = (props) => {
   return (
     <>
       <div className={styles.container}>
-        <div>
+        <div className={styles.flag}>
           <img
             alt={`Flag of ${props.flagData.name.common}`}
-            style={{ width: "100%" }}
             src={props.flagData.flags.png}
           />
         </div>
-        <div className={styles["country-info-container"]}>
+        <div className={styles.info}>
           <h3 className={styles.name}>{props.flagData.name.common}</h3>
           <p>
             {" "}
-            <span className={styles["country-caption"]}>Population:</span>
-            {props.flagData.population}
+            <span className={styles.caption}>Population:</span>
+            {props.flagData.population.toLocaleString("en-US")}
           </p>
           <p>
             {" "}
-            <span className={styles["country-caption"]}>Region:</span>
+            <span className={styles.caption}>Region:</span>
             {props.flagData.region}
           </p>
           <p>
             {" "}
-            <span className={styles["country-caption"]}>Capital:</span>
+            <span className={styles.caption}>Capital:</span>
             {props.flagData.capital}
           </p>
         </div>
