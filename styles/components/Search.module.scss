@@ -1,10 +1,30 @@
-.search-container{
+@use "../utils/" as utils;
+.container{
+    margin-bottom: 3rem;
+    display: relative;
+    @include utils.md{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+}
+.searchBarContainer{
     display: flex;
     position: relative;
     align-items: center;
     padding: 1.25rem 0;
+    @include utils.sm{
+        flex: 0.6;
+    }
+    @include utils.md{
+        flex: 0.5
+    }
+    @include utils.lg{
+        flex: 0.4;
+    }
 }
-.search{
+.searchBar{
     padding: 1rem 4rem;
     border-radius: 5px;
     border: none;
@@ -13,17 +33,16 @@
     &::placeholder{
         color:#706b6b;
     }
+    flex: 1 1 auto;
 }
-.search-icon{
+.icon{
     color: #B4B4B4;
     font-size: 0.75rem;
     position: absolute;
     left: 2rem;
     cursor: pointer;
-    // margin: 0 1rem;
 }
-.filter-container{
-    width:202px;
+.filter__container{
 }
 .filter{
     display: flex;
@@ -31,23 +50,35 @@
     border-radius: 7px;
     align-items: center;
     justify-content: space-between;
-    width:202px;
+    width:200px;
     padding:  0 1.5rem;
     margin-bottom: -8px;
+    position: relative;
 }
-.filterOptions{
+.filter__options{
     padding:  0.4rem 1.5rem;
     background-color: white;
     border-radius: 5px;
     margin-top: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    width: 200px;
 }
-i#filter-toggle{
+.fade{
+    opacity: 1;
+}
+i.filter__btn-toggle{
     font-size: 0.75rem;
     cursor: pointer;
 }
-.filterOption{
+.filter__option{
     cursor: pointer;
     &:hover{
         color:rgb(199, 198, 198);
     }
+}
+
+.selected{
+    color:rgb(199, 198, 198);
 }

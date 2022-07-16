@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Country from "./Country";
 import styles from "../styles/pages/Home.module.scss";
 import Search from "./Search";
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 
 const Dashboard = (props) => {
   const [countries, setCountries] = useState([]);
@@ -26,12 +26,25 @@ const Dashboard = (props) => {
       )
     );
   };
+  const onClick = (e) => {
+    const value = e.target.textContent;
+    const elements = document.querySelector(`.${styles.selected}`);
+    if (elements) {
+      elements.classList.remove(`${styles.selected}`);
+    }
+    e.target.classList.add(`${styles.selected}`);
+    setCountries(
+      initialCountries.filter(
+        (x) => x.region.toLowerCase() == value.toLowerCase()
+      )
+    );
+  };
   return (
     <>
-      <Search onChange={onChange} />
+      <Search onChange={onChange} onClick={onClick} />
       <div className={[styles.container]}>
         {countries.map((country, index) => (
-          <Country key={uuid()} flagData={country} />
+          <Country key={uuidv4()} flagData={country} />
         ))}
       </div>
     </>
