@@ -20,6 +20,10 @@ const Dashboard = (props) => {
 
   const onChange = (e) => {
     const query = e.target.value.toLowerCase();
+    const elements = document.querySelector(`.${styles.selected}`);
+    if (elements) {
+      elements.classList.remove(`${styles.selected}`);
+    }
     setCountries(
       initialCountries.filter((x) =>
         x.name.common.toLowerCase().includes(query)
@@ -39,12 +43,15 @@ const Dashboard = (props) => {
       )
     );
   };
+  const onCountryClick = () =>{
+    console.log("clicked");
+  }
   return (
     <>
       <Search onChange={onChange} onClick={onClick} />
       <div className={[styles.container]}>
         {countries.map((country, index) => (
-          <Country key={uuidv4()} flagData={country} />
+          <Country key={uuidv4()} flagData={country} onClick={onCountryClick} />
         ))}
       </div>
     </>
