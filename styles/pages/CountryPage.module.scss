@@ -1,0 +1,14 @@
+@use "../utils/" as utils;
+
+.container{
+    padding: 5rem 3rem;
+}
+.button{
+    border: none;
+    padding: 0.625rem 2rem;
+    background-color: utils.$white-elements;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 5px;
+    color: utils.$light-text-color;
+    cursor: pointer;
+}

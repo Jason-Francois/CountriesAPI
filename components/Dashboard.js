@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 const Dashboard = (props) => {
   const [countries, setCountries] = useState([]);
   const [initialCountries, setInitialCountries] = useState([]);
+
   const fetchCountries = async () => {
     const res = await fetch("https://restcountries.com/v3.1/all");
     const data = await res.json();
@@ -18,12 +19,15 @@ const Dashboard = (props) => {
     fetchCountries();
   }, []);
 
-  const onChange = (e) => {
-    const query = e.target.value.toLowerCase();
+  const removeFilterOptions = () => {
     const elements = document.querySelector(`.${styles.selected}`);
     if (elements) {
       elements.classList.remove(`${styles.selected}`);
     }
+  };
+  const onChange = (e) => {
+    const query = e.target.value.toLowerCase();
+    removeFilterOptions();
     setCountries(
       initialCountries.filter((x) =>
         x.name.common.toLowerCase().includes(query)
@@ -32,10 +36,7 @@ const Dashboard = (props) => {
   };
   const onClick = (e) => {
     const value = e.target.textContent;
-    const elements = document.querySelector(`.${styles.selected}`);
-    if (elements) {
-      elements.classList.remove(`${styles.selected}`);
-    }
+    removeFilterOptions();
     e.target.classList.add(`${styles.selected}`);
     setCountries(
       initialCountries.filter(
@@ -43,9 +44,9 @@ const Dashboard = (props) => {
       )
     );
   };
-  const onCountryClick = () =>{
+  const onCountryClick = () => {
     console.log("clicked");
-  }
+  };
   return (
     <>
       <Search onChange={onChange} onClick={onClick} />
