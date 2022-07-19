@@ -17,6 +17,7 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     fetchCountries();
+    console.log(countries);
   }, []);
 
   const removeFilterOptions = () => {

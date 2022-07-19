@@ -1,14 +1,36 @@
 @use "../utils/" as utils;
 
 .container{
-    padding: 5rem 3rem;
+    margin-top: 2rem;
 }
 .button{
     border: none;
     padding: 0.625rem 2rem;
     background-color: utils.$white-elements;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    border-radius: 5px;
+    border-radius: 2px;
     color: utils.$light-text-color;
     cursor: pointer;
+    margin-bottom: 1.5rem;
+}
+.country__title{
+    margin: 2rem 0;
+}
+.country__flag{
+    height: 180px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+}
+.info__label{
+    display: inline-block;
+}
+.info__container{
+    margin: 1rem 0;
+    h4{
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right:  0.5rem;
+    }
 }

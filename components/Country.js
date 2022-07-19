@@ -20,7 +20,6 @@ const Country = (props) => {
         <div className={styles.info}>
           <h3 className={styles.name}>{props.flagData.name.common}</h3>
           <p>
-            {" "}
             <span className={styles.caption}>Population:</span>
             {props.flagData.population.toLocaleString("en-US")}
           </p>
