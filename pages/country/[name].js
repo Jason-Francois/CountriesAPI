@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import styles from "../../styles/pages/CountryPage.module.scss";
 
 export async function getStaticPaths() {
@@ -17,30 +18,41 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const name = params.name;
   const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
-  const data = await res.json();
+  const countryData = await res.json();
+  let codes = countryData[0].borders.join(",");
+
+  const res2 = await fetch(
+    `https://restcountries.com/v3.1/alpha?codes=${codes}`
+  );
+  const borderData = await res2.json();
+
   return {
-    props: { data },
+    props: {
+      Data: countryData[0],
+      BorderCountries: borderData.map((x) => x.name.common),
+    },
     revalidate: 1,
   };
 }
 
+const getObjectProps = (obj, targetPropName) => {
+  const results = [];
+  for (const prop in obj) {
+    results.push(obj[prop][targetPropName]);
+  }
+  return formatArray(results);
+};
+const formatArray = (arr) => {
+  if (arr.length != 0) {
+    return arr.length == 1 ? arr[0] : arr.join(", ");
+  } else {
+    return null;
+  }
+};
+
 const CountryPage = (props) => {
-  const getObjectProps = (obj, targetPropName) => {
-    const results = [];
-    for (const prop in obj) {
-      results.push(obj[prop][targetPropName]);
-    }
-    return formatArray(results);
-  };
-  const formatArray = (arr) => {
-    if (arr.length != 0) {
-      return arr.length == 1 ? arr[0] : arr.join(", ");
-    } else {
-      return null;
-    }
-  };
-  const countryInfo = props.data[0];
-  console.log(countryInfo);
+  const countryInfo = props.Data;
+  const borderCountries = props.BorderCountries;
   return (
     <>
       <div className={styles.container}>
@@ -64,7 +76,9 @@ const CountryPage = (props) => {
             <div className={styles["info-left"]}>
               <div className={styles["info__container"]}>
                 <h4 className={styles["info__label"]}>Native Name:</h4>
-                <span>{countryInfo.name.nativeName.nld.common}</span>
+                <span>
+                  {getObjectProps(countryInfo.name.nativeName, "common")}
+                </span>
               </div>
               <div className={styles["info__container"]}>
                 <h4 className={styles["info__label"]}>Population:</h4>
@@ -100,7 +114,20 @@ const CountryPage = (props) => {
             <div className={styles["border"]}>
               <h4 className={styles["info__label"]}>Border Countries:</h4>
 
-              <div className={styles["borderCountries"]}></div>
+              <div className={styles["borderCountries"]}>
+                {borderCountries.map((country, index) => {
+                  return (
+                    <Link key={2} href={`/country/${country}`}>
+                      <button
+                        className={`${styles["button"]} ${styles["button-border"]}`}
+                      >
+                        {" "}
+                        {country}{" "}
+                      </button>
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@
     margin-top: 2rem;
 }
 .button{
+    font-family: utils.$font-main;
     border: none;
     padding: 0.625rem 2rem;
     background-color: utils.$white-elements;
@@ -12,6 +13,10 @@
     color: utils.$light-text-color;
     cursor: pointer;
     margin-bottom: 1.5rem;
+    &-border{
+        padding: 0.1rem 1rem;
+        font-weight: 600;
+    }
 }
 .country__title{
     margin: 2rem 0;
@@ -34,3 +39,10 @@
         margin-right:  0.5rem;
     }
 }
+.borderCountries{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    width: 100%;
+    grid-column-gap: 0.875rem;
+}
+
