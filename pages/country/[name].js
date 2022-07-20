@@ -18,17 +18,19 @@ export async function getStaticProps({ params }) {
   const name = params.name;
   const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
   const countryData = await res.json();
-  let codes = countryData[0].borders.join(",");
-
-  const res2 = await fetch(
-    `https://restcountries.com/v3.1/alpha?codes=${codes}`
-  );
-  const borderData = await res2.json();
-
+  let borderData = null;
+  if (countryData[0].borders) {
+    let codes = countryData[0].borders.join(",");
+    const res2 = await fetch(
+      `https://restcountries.com/v3.1/alpha?codes=${codes}`
+    );
+    borderData = await res2.json();
+    borderData = borderData.map((x) => x.name.common);
+  }
   return {
     props: {
       Data: countryData[0],
-      BorderCountries: borderData.map((x) => x.name.common),
+      BorderCountries: borderData,
     },
     revalidate: 1,
   };
@@ -48,7 +50,17 @@ const formatArray = (arr) => {
     return null;
   }
 };
-
+const getBorderCountryButtons = (borderArr) => {
+  return borderArr.map((country, index) => {
+    return (
+      <Link key={index} href={`/country/${country}`}>
+        <button className={`${styles["button"]} ${styles["button-border"]}`}>
+          {country}
+        </button>
+      </Link>
+    );
+  });
+};
 const CountryPage = (props) => {
   const countryInfo = props.Data;
   const borderCountries = props.BorderCountries;
@@ -72,64 +84,71 @@ const CountryPage = (props) => {
               layout="fill"
             />
           </div>
-          <h2 className={styles["country__title"]}>
-            {countryInfo.name.common}
-          </h2>
+
           <div className={styles["info"]}>
-            <div className={styles["info-left"]}>
-              <div className={styles["info__container"]}>
-                <h4 className={styles["info__label"]}>Native Name:</h4>
-                <span>
-                  {getObjectProps(countryInfo.name.nativeName, "common")}
-                </span>
+            <h2 className={styles["country__title"]}>
+              {countryInfo.name.common}
+            </h2>
+            <div className={styles["info__columns"]}>
+              <div className={styles["info-left"]}>
+                <div className={styles["info__container"]}>
+                  <h4 className={styles["info__label"]}>Native Name:</h4>
+                  <span className={styles["info__text"]}>
+                    {getObjectProps(countryInfo.name.nativeName, "common")}
+                  </span>
+                </div>
+                <div className={styles["info__container"]}>
+                  <h4 className={styles["info__label"]}>Population:</h4>
+                  <span className={styles["info__text"]}>
+                    {countryInfo.population.toLocaleString("en-US")}
+                  </span>
+                </div>
+                <div className={styles["info__container"]}>
+                  <h4 className={styles["info__label"]}>Region:</h4>
+                  <span className={styles["info__text"]}>
+                    {countryInfo.region}
+                  </span>
+                </div>
+                <div className={styles["info__container"]}>
+                  <h4 className={styles["info__label"]}>Sub Region:</h4>
+                  <span className={styles["info__text"]}>
+                    {countryInfo.subregion}
+                  </span>
+                </div>
+                <div className={styles["info__container"]}>
+                  <h4 className={styles["info__label"]}>Capital:</h4>
+                  <span className={styles["info__text"]}>
+                    {formatArray(countryInfo.capital)}
+                  </span>
+                </div>
               </div>
-              <div className={styles["info__container"]}>
-                <h4 className={styles["info__label"]}>Population:</h4>
-                <span>{countryInfo.population.toLocaleString("en-US")}</span>
-              </div>
-              <div className={styles["info__container"]}>
-                <h4 className={styles["info__label"]}>Region:</h4>
-                <span>{countryInfo.region}</span>
-              </div>
-              <div className={styles["info__container"]}>
-                <h4 className={styles["info__label"]}>Sub Region:</h4>
-                <span>{countryInfo.subregion}</span>
-              </div>
-              <div className={styles["info__container"]}>
-                <h4 className={styles["info__label"]}>Capital:</h4>
-                <span>{formatArray(countryInfo.capital)}</span>
-              </div>
-            </div>
-            <div className={styles["info-right"]}>
-              <div className={styles["info__container"]}>
-                <h4 className={styles["info__label"]}>Top Level Domain:</h4>
-                <span>{formatArray(countryInfo.tld)}</span>
-              </div>
-              <div className={styles["info__container"]}>
-                <h4 className={styles["info__label"]}>Currencies:</h4>
-                <span>{getObjectProps(countryInfo.currencies, "name")}</span>
-              </div>
-              <div className={styles["info__container"]}>
-                <h4 className={styles["info__label"]}>Languages:</h4>
-                <span>{formatArray(Object.values(countryInfo.languages))}</span>
+              <div className={styles["info-right"]}>
+                <div className={styles["info__container"]}>
+                  <h4 className={styles["info__label"]}>Top Level Domain:</h4>
+                  <span className={styles["info__text"]}>
+                    {countryInfo.tld ? formatArray(countryInfo.tld) : ""}
+                  </span>
+                </div>
+                <div className={styles["info__container"]}>
+                  <h4 className={styles["info__label"]}>Currencies:</h4>
+                  <span className={styles["info__text"]}>
+                    {getObjectProps(countryInfo.currencies, "name")}
+                  </span>
+                </div>
+                <div className={styles["info__container"]}>
+                  <h4 className={styles["info__label"]}>Languages:</h4>
+                  <span className={styles["info__text"]}>
+                    {formatArray(Object.values(countryInfo.languages))}
+                  </span>
+                </div>
               </div>
             </div>
             <div className={styles["border"]}>
               <h4 className={styles["info__label"]}>Border Countries:</h4>
-
               <div className={styles["borderCountries"]}>
-                {borderCountries.map((country, index) => {
-                  return (
-                    <Link key={2} href={`/country/${country}`}>
-                      <button
-                        className={`${styles["button"]} ${styles["button-border"]}`}
-                      >
-                        {" "}
-                        {country}{" "}
-                      </button>
-                    </Link>
-                  );
-                })}
+                {borderCountries
+                  ? getBorderCountryButtons(borderCountries)
+                  : ""}
               </div>
             </div>
           </div>
