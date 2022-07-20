@@ -16,13 +16,17 @@
     &-border{
         padding: 0.1rem 1rem;
         font-weight: 600;
+        margin-bottom: 0;
+        height: 2.5rem;
     }
 }
 .country__title{
     margin: 2rem 0;
 }
 .country__flag{
-    height: 180px;
+    height: 200px;
+    width: 300px;
+    position: relative;
 }
 .info{
     display: flex;
@@ -43,6 +47,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     width: 100%;
-    grid-column-gap: 0.875rem;
+    grid-gap: 0.875rem;
+    padding-bottom: 1.5rem;
 }
 

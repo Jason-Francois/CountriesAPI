@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import styles from "../../styles/pages/CountryPage.module.scss";
-
+import Image from "next/image";
 export async function getStaticPaths() {
   const res = await fetch(`https://restcountries.com/v3.1/all`);
   const data = await res.json();
@@ -67,7 +66,11 @@ const CountryPage = (props) => {
         </Link>
         <div className={styles.country}>
           <div className={styles["country__flag"]}>
-            <img src={countryInfo.flags.png} />
+            <Image
+              src={countryInfo.flags.png}
+              alt={`Flag of ${countryInfo.name.common}`}
+              layout="fill"
+            />
           </div>
           <h2 className={styles["country__title"]}>
             {countryInfo.name.common}
