@@ -1,16 +1,16 @@
 @use "../utils/" as utils;
 
 .container{
-    margin-top: 2rem;
+    padding-top: 2rem;
     @include utils.sm{
-        margin: 2rem;
+        padding: 2rem;
         width: 90%;
     }
     @include utils.md{
-        margin: 2.5rem;
+        padding: 2.5rem;
     }
     @include utils.lg{
-        margin: 5rem;
+        padding: 5rem;
     }
 }
 .button{
@@ -57,7 +57,7 @@
     }
 }
 .info__columns {
-    @include utils.md{
+    @include utils.sm{
         display: grid;
         grid-template-columns: repeat(2,1fr);
         column-gap: 3rem;

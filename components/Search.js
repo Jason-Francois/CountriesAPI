@@ -1,24 +1,32 @@
+import { useContext } from "react";
 import styles from "../styles/components/Search.module.scss";
+import { ThemeContext } from "./contexts/ThemeContext";
 
 const Search = (props) => {
   const onToggleClick = () => {
     const options = document.querySelector(`.${styles["filter__options"]}`);
     options.classList.toggle(`${styles["fade"]}`);
   };
+  const { theme } = useContext(ThemeContext);
   return (
     <>
       <div className={styles.container} style={{ marginBottom: "3rem" }}>
         <div className={styles.searchBarContainer}>
-          <i className={`fa fa-search ${styles.icon}`} aria-hidden="true" />
+          <i
+            className={`fa fa-search ${styles.icon} ${theme}__searchIcon`}
+            aria-hidden="true"
+          />
           <input
-            className={styles.searchBar}
+            className={`${styles.searchBar} ${theme}__search ${theme}__background2`}
             type="text"
             placeholder="Search for a country..."
             onChange={props.onChange}
           />
         </div>
-        <div className={styles["filter__container"]}>
-          <div className={styles.filter}>
+        <div>
+          <div
+            className={`${styles.filter} ${theme}__text ${theme}__background2`}
+          >
             <p
               style={{
                 fontWeight: 400,
@@ -33,7 +41,9 @@ const Search = (props) => {
               onClick={onToggleClick}
             ></i>
           </div>
-          <div className={styles["filter__options"]}>
+          <div
+            className={`${styles["filter__options"]} ${theme}__text ${theme}__background2`}
+          >
             <p className={styles["filter__option"]} onClick={props.onClick}>
               Africa
             </p>
