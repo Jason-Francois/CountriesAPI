@@ -57,7 +57,7 @@
     }
 }
 .info__columns {
-    @include utils.md{
+    @include utils.sm{
         display: grid;
         grid-template-columns: repeat(2,1fr);
         column-gap: 3rem;
