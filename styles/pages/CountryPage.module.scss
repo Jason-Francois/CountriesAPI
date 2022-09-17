@@ -1,0 +1,97 @@
+@use "../utils/" as utils;
+
+.container{
+    padding-top: 2rem;
+    @include utils.sm{
+        padding: 2rem;
+        width: 90%;
+    }
+    @include utils.md{
+        padding: 2.5rem;
+    }
+    @include utils.lg{
+        padding: 5rem;
+    }
+}
+.button{
+    font-family: utils.$font-main;
+    border: none;
+    padding: 0.625rem 2rem;
+    background-color: utils.$white-elements;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 8px;
+    color: utils.$light-text-color;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    &-border{
+        padding: 0.1rem 1rem;
+        font-weight: 600;
+        margin-bottom: 0;
+        height: 2.5rem;
+    }
+}
+.country__title{
+    margin: 1rem 0;
+}
+.country__flag{
+    height: 200px;
+    width: 325px;
+    
+    position: relative;
+    @include utils.sm{
+        max-width: 450px;
+        max-height: 275;;
+    }
+    @include utils.md{
+        width: 450px;
+        height: 275px;
+    }
+}
+.info{
+    display: flex;
+    flex-direction: column;
+}
+.info__text{
+    @include utils.sm{
+        font-size: 0.875rem;
+    }
+}
+.info__columns {
+    @include utils.sm{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        column-gap: 3rem;
+    }
+    @include utils.lg{
+        column-gap: 12rem;
+    }
+}
+.info__label{
+    display: inline-block;
+}
+.info__container{
+    margin: 1rem 0;
+    @include utils.md{
+        margin: 0.5rem 0;
+    }
+    h4{
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right:  0.5rem;
+    }
+}
+.borderCountries{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    width: 100%;
+    grid-gap: 0.875rem;
+    padding-bottom: 1.5rem;
+}
+
+.country{
+    @include utils.md{
+        display: flex;
+        margin-top: 2rem;
+        gap: 6rem;
+    }
+}

@@ -1,0 +1,16 @@
+.nav{
+    background-color: #FFFFFF;
+    margin: 0;
+    box-shadow: 0 5px 2px -2px rgb(237, 235, 235);
+    width: 100%;
+    ul{
+        list-style: none;
+        display: flex;
+        margin: 0 1rem;
+        padding: 3em 0;
+        justify-content: space-between;
+    }
+    &__logo{
+        cursor: pointer;
+    }
+}
