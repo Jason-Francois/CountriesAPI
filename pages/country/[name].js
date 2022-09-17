@@ -46,7 +46,7 @@ const getObjectProps = (obj, targetPropName) => {
   return formatArray(results);
 };
 const formatArray = (arr) => {
-  if (arr.length != 0) {
+  if (arr && arr.length != 0) {
     return arr.length == 1 ? arr[0] : arr.join(", ");
   } else {
     return null;
@@ -143,7 +143,9 @@ const CountryPage = (props) => {
                 <div className={styles["info__container"]}>
                   <h4 className={styles["info__label"]}>Languages:</h4>
                   <span className={styles["info__text"]}>
-                    {formatArray(Object.values(countryInfo.languages))}
+                    {countryInfo.languages
+                      ? formatArray(Object.values(countryInfo.languages))
+                      : ""}
                   </span>
                 </div>
               </div>
