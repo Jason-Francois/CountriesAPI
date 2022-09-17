@@ -32,7 +32,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Countries-API](https://your-live-site-url.com)
+- Live Site URL: [Countries-API](https://countries-api-six-alpha.vercel.app/)
 
 ## My process
 
@@ -41,7 +41,7 @@ Users should be able to:
 - Semantic HTML5 markup
 - HTML
 - CSS/SCSS
-- [Create Next App] (https://nextjs.org/docs/api-reference/create-next-app)
+- [Create Next App](https://nextjs.org/docs/api-reference/create-next-app)
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
 - [css-modules](https://github.com/css-modules/css-modules) - Came pre-installed with Create Next App
