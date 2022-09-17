@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 import styles from "../styles/components/Country.module.scss";
+import { ThemeContext } from "./contexts/ThemeContext";
 const Country = (props) => {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
       <div
         id={props.flagData.name.common}
-        className={styles.container}
+        className={`${styles.container} ${theme}__background2`}
         onClick={props.onClick}
       >
         <Link href={`/country/${props.flagData.name.common}`}>
@@ -17,7 +20,7 @@ const Country = (props) => {
             />
           </div>
         </Link>
-        <div className={styles.info}>
+        <div className={`${styles.info} ${theme}__text`}>
           <h3 className={styles.name}>{props.flagData.name.common}</h3>
           <p>
             <span className={styles.caption}>Population:</span>

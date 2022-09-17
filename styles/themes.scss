@@ -1,0 +1,40 @@
+@use "./utils/" as utils;
+.light{
+    &__background{
+
+    }
+    .background-nav{
+
+    }
+    &__text{
+        color: utils.$light-text-color;
+    }
+    &__btn{
+        background-color: utils.$dark-element-color !important;
+        color: utils.$white-elements !important;
+    }
+}
+.dark{
+    &__background{
+        background-color: utils.$dark-background-color !important;
+    }
+    &__background2{
+        background-color: utils.$dark-element-color !important;
+    }
+    &__text{
+        color: utils.$white-elements !important;
+    }
+    &__button{
+        background-color: utils.$dark-element-color !important;
+        color: utils.$white-elements !important;
+    }
+    &__searchIcon{
+        color: utils.$white-elements !important;
+    }
+    &__search, &__search::placeholder{
+        color: utils.$white-elements !important;
+    }
+    ::placeholder{
+        color: utils.$white-elements !important;
+    }
+}

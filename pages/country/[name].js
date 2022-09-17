@@ -1,6 +1,8 @@
 import Link from "next/link";
 import styles from "../../styles/pages/CountryPage.module.scss";
 import Image from "next/image";
+import { useContext } from "react";
+import { ThemeContext } from "../../components/contexts/ThemeContext";
 export async function getStaticPaths() {
   const res = await fetch(`https://restcountries.com/v3.1/all`);
   const data = await res.json();
@@ -50,11 +52,13 @@ const formatArray = (arr) => {
     return null;
   }
 };
-const getBorderCountryButtons = (borderArr) => {
+const getBorderCountryButtons = (borderArr, theme) => {
   return borderArr.map((country, index) => {
     return (
       <Link key={index} href={`/country/${country}`}>
-        <button className={`${styles["button"]} ${styles["button-border"]}`}>
+        <button
+          className={`${styles["button"]} ${styles["button-border"]} ${theme}__button`}
+        >
           {country}
         </button>
       </Link>
@@ -64,13 +68,14 @@ const getBorderCountryButtons = (borderArr) => {
 const CountryPage = (props) => {
   const countryInfo = props.Data;
   const borderCountries = props.BorderCountries;
+  const { theme } = useContext(ThemeContext);
   return (
     <>
       <div className={styles.container}>
         <Link href="/">
-          <button className={styles.button}>
+          <button className={`${styles.button} ${theme}__button`}>
             <i
-              className="fa-solid fa-arrow-left"
+              className={`fa-solid fa-arrow-left`}
               style={{ marginRight: "1rem" }}
             ></i>
             Back
@@ -85,7 +90,7 @@ const CountryPage = (props) => {
             />
           </div>
 
-          <div className={styles["info"]}>
+          <div className={`${styles["info"]} ${theme}__text`}>
             <h2 className={styles["country__title"]}>
               {countryInfo.name.common}
             </h2>
@@ -147,7 +152,7 @@ const CountryPage = (props) => {
               <h4 className={styles["info__label"]}>Border Countries:</h4>
               <div className={styles["borderCountries"]}>
                 {borderCountries
-                  ? getBorderCountryButtons(borderCountries)
+                  ? getBorderCountryButtons(borderCountries, theme)
                   : ""}
               </div>
             </div>
