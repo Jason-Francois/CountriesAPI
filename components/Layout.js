@@ -16,6 +16,6 @@ const Layout = ({ children }) => {
         <div className={styles.content}>{children}</div>
       </div>
     </>
-  );
-};
+  )
+}
 export default Layout;

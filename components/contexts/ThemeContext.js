@@ -9,7 +9,6 @@ export const ThemeProvider = ({ children }) => {
       <ThemeContext.Provider value={{ theme, setTheme }}>
         {children}
       </ThemeContext.Provider>
-      ;
     </>
   );
 };
