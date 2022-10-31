@@ -32,7 +32,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Countries-API](https://countries-api-six-alpha.vercel.app/)
+- Live Site: [Countries-API](https://countries-api-six-alpha.vercel.app/)
 
 ## My process
 
