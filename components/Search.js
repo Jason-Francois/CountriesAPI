@@ -42,6 +42,7 @@ const Search = (props) => {
             ></i>
           </div>
           <div
+            id="filterOptions"
             className={`${styles["filter__options"]} ${theme}__text ${theme}__background2`}
           >
             <p className={styles["filter__option"]} onClick={props.onClick}>

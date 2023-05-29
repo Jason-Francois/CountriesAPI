@@ -4,12 +4,18 @@ import styles from "../styles/pages/Home.module.scss";
 import Search from "./Search";
 import { v4 as uuidv4 } from "uuid";
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   const [countries, setCountries] = useState([]);
   const [initialCountries, setInitialCountries] = useState([]);
 
   const fetchCountries = async () => {
-    const res = await fetch("https://restcountries.com/v3.1/all");
+    const res = await fetch("https://restcountries.com/v3.1/all", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const data = await res.json();
     setCountries(data);
     setInitialCountries(data);
@@ -44,15 +50,12 @@ const Dashboard = (props) => {
       )
     );
   };
-  const onCountryClick = () => {
-    console.log("clicked");
-  };
   return (
     <>
       <Search onChange={onChange} onClick={onClick} />
       <div className={[styles.container]}>
-        {countries.map((country, index) => (
-          <Country key={uuidv4()} flagData={country} onClick={onCountryClick} />
+        {countries.map((country, _) => (
+          <Country key={uuidv4()} flagData={country} />
         ))}
       </div>
     </>

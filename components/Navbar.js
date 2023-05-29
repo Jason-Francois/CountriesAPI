@@ -5,6 +5,12 @@ import { ThemeContext } from "./contexts/ThemeContext";
 export default function Navbar() {
   const { theme, setTheme } = useContext(ThemeContext);
   const onClick = () => {
+    const body = document.querySelector("body");
+    if (theme === "light") {
+      body.classList.add(`dark__background`);
+    } else {
+      body.classList.remove(`dark__background`);
+    }
     setTheme(theme === "light" ? "dark" : "light");
   };
   return (
