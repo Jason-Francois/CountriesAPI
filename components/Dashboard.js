@@ -44,6 +44,7 @@ const Dashboard = () => {
     const value = e.target.textContent;
     removeFilterOptions();
     e.target.classList.add(`${styles.selected}`);
+    document.querySelector("#filterOptions").classList.toggle("fade");
     setCountries(
       initialCountries.filter(
         (x) => x.region.toLowerCase() == value.toLowerCase()
