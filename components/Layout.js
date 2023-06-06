@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { ThemeContext } from "./contexts/ThemeContext.js";
 
 const Layout = ({ children }) => {
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <>
       <Head>
@@ -16,6 +16,6 @@ const Layout = ({ children }) => {
         <div className={styles.content}>{children}</div>
       </div>
     </>
-  )
-}
+  );
+};
 export default Layout;

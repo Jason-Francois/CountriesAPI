@@ -4,8 +4,8 @@ import { ThemeContext } from "./contexts/ThemeContext";
 
 const Search = (props) => {
   const onToggleClick = () => {
-    const options = document.querySelector(`.${styles["filter__options"]}`);
-    options.classList.toggle(`${styles["fade"]}`);
+    const options = document.querySelector(`#filterOptions`);
+    options.classList.toggle(`fade`);
   };
   const { theme } = useContext(ThemeContext);
   return (
@@ -42,6 +42,7 @@ const Search = (props) => {
             ></i>
           </div>
           <div
+            id="filterOptions"
             className={`${styles["filter__options"]} ${theme}__text ${theme}__background2`}
           >
             <p className={styles["filter__option"]} onClick={props.onClick}>
