@@ -65,7 +65,6 @@ const Dashboard = () => {
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentCountries = countries.slice(firstPostIndex, lastPostIndex);
-
   return (
     <>
       <Search onChange={onChange} onClick={onClick} />

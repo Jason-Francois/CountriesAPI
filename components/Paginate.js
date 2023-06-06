@@ -11,10 +11,10 @@ const getArrayOfNums = (low, high) => {
 };
 const Paginate = ({ postsPerPage, totalPosts, paginate }) => {
   const totalNumPages = Math.ceil(totalPosts / postsPerPage);
-  const pageSpan = 4;
+  const PAGE_SPAN = 4;
   const [lowerLimit, setLowerLimit] = useState(1);
   const { theme } = useContext(ThemeContext);
-  const [pageNumbers, setPageNumbers] = useState(getArrayOfNums(1, pageSpan));
+  const [pageNumbers, setPageNumbers] = useState(getArrayOfNums(1, PAGE_SPAN));
   const removeSelectedPages = () => {
     const elements = document.querySelector(`.${styles.selected}`);
     if (elements) {
@@ -23,12 +23,11 @@ const Paginate = ({ postsPerPage, totalPosts, paginate }) => {
   };
 
   const handleNextClick = () => {
-    const newLowerLimit = lowerLimit + pageSpan;
-    if (newLowerLimit + pageSpan < totalNumPages) {
-      setLowerLimit(lowerLimit + pageSpan);
-      console.log(getArrayOfNums(newLowerLimit, newLowerLimit + pageSpan));
+    const newLowerLimit = lowerLimit + PAGE_SPAN;
+    if (newLowerLimit + PAGE_SPAN < totalNumPages) {
+      setLowerLimit(lowerLimit + PAGE_SPAN);
       setPageNumbers(
-        getArrayOfNums(newLowerLimit, newLowerLimit + pageSpan - 1)
+        getArrayOfNums(newLowerLimit, newLowerLimit + PAGE_SPAN - 1)
       );
     } else {
       setLowerLimit(totalNumPages);
@@ -36,16 +35,16 @@ const Paginate = ({ postsPerPage, totalPosts, paginate }) => {
     }
   };
   const handlePrevClick = () => {
-    const newLowerLimit = lowerLimit - pageSpan;
-    if (newLowerLimit > pageSpan) {
-      const newLowerLimit = lowerLimit - pageSpan;
+    const newLowerLimit = lowerLimit - PAGE_SPAN;
+    if (newLowerLimit > PAGE_SPAN) {
+      const newLowerLimit = lowerLimit - PAGE_SPAN;
       setLowerLimit(newLowerLimit);
       setPageNumbers(
-        getArrayOfNums(newLowerLimit, newLowerLimit + pageSpan - 1)
+        getArrayOfNums(newLowerLimit, newLowerLimit + PAGE_SPAN - 1)
       );
     } else {
       setLowerLimit(1);
-      setPageNumbers(getArrayOfNums(1, pageSpan));
+      setPageNumbers(getArrayOfNums(1, PAGE_SPAN));
     }
   };
   return (
